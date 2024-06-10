@@ -4,8 +4,10 @@ import jwt from 'jsonwebtoken';
 const postRegister = async (req, res) => {
   try {
     const { username, mail, password } = req.body;
+    console.log({ username, mail, password });
     const userExists = await User.exists({ mail });
     if (userExists) {
+      console.log('exist');
       return res.status(409).send('Email already exist');
     }
     const encryptedPassword = await bcrypt.hash(password, 10);

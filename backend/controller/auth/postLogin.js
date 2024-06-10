@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 const postLogin = async (req, res) => {
   try {
     const { mail, password } = req.body;
+
     const user = await User.findOne({ mail: mail.toLowerCase() });
     if (user && (await bcrypt.compare(password, user.password))) {
       const token = 'JWT_TOKEN';
