@@ -33,6 +33,8 @@ const userSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         console.log(action.payload);
         state.userDetails = action.payload;
+        console.log(action.payload);
+        localStorage.setItem('user', action.payload);
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.error = true;
@@ -44,6 +46,7 @@ const userSlice = createSlice({
       .addCase(registerUser.fulfilled, (state, action) => {
         state.error = null;
         state.userDetails = action.payload;
+        localStorage.setItem('user', action.payload);
       })
       .addCase(registerUser.rejected, (state, action) => {
         if (action.error.message) {

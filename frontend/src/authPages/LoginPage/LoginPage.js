@@ -3,7 +3,7 @@ import AuthBox from '../../shared/components/AuthBox';
 import LoginPageHeader from './LoginPageHeader';
 import LoginPageInputs from './LoginPageInputs';
 import LoginPageFooter from './LoginPageFooter';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { validateLoginForm } from './../../shared/utils/validators';
 import { useNavigate } from 'react-router-dom';
