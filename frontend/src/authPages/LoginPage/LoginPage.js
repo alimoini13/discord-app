@@ -24,6 +24,7 @@ const LoginPage = () => {
       }
       if (result.error) {
         console.log(result.error.message, 'result error');
+        console.log(result, 'result');
         dispatch(openAlertMessage(result.error.message));
       }
     });

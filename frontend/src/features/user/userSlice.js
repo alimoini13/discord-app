@@ -5,6 +5,7 @@ export const loginUser = createAsyncThunk(
   'user/loginUser',
   async ({ mail, password }) => {
     const response = await login({ mail, password });
+    console.log(response, 'response');
     if (response.error) {
       throw Error(response.exception.response.data);
     }
@@ -34,7 +35,7 @@ const userSlice = createSlice({
         console.log(action.payload);
         state.userDetails = action.payload;
         console.log(action.payload);
-        localStorage.setItem('user', action.payload);
+        localStorage.setItem('user', JSON.stringify(action.payload));
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.error = true;
@@ -46,7 +47,7 @@ const userSlice = createSlice({
       .addCase(registerUser.fulfilled, (state, action) => {
         state.error = null;
         state.userDetails = action.payload;
-        localStorage.setItem('user', action.payload);
+        localStorage.setItem('user', JSON.stringify(action.payload));
       })
       .addCase(registerUser.rejected, (state, action) => {
         if (action.error.message) {

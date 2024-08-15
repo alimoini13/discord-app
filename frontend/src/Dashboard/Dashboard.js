@@ -6,6 +6,7 @@ import FriendsSidebar from './FriendsSidebar/FriendsSidebar';
 import Messenger from './Messenger/Messenger';
 import AppBar from './AppBar/AppBar';
 import { logout } from '../shared/utils/auth';
+import { connectWithSocketServer } from '../realTimeCommunication/socketConnection';
 const Dashboard = () => {
   // const { userDetails } = useSelector((state) => state.user);
   const Wrapper = styled('div')({
@@ -18,10 +19,11 @@ const Dashboard = () => {
 
     if (!userDetails) {
       logout();
+    } else {
+      // setUserDetails(JSON.parse(userDetails));
+
+      connectWithSocketServer(JSON.parse(userDetails));
     }
-    // else {
-    //   setUserDetails(JSON.parse(userDetails));
-    // }
   }, []);
 
   return (

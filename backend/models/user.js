@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
   },
+  friends: [{ type: mongoose.Schema.Types.Object, ref: 'User' }],
 });
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('User', userSchema);
 
 export default User;

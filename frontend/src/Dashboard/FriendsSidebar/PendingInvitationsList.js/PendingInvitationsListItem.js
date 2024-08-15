@@ -2,23 +2,28 @@ import React, { useState } from 'react';
 import { Tooltip, Typography, Box } from '@mui/material';
 import Avatar from '../../../shared/components/Avatar';
 import InvitationDecisionButtons from './InvitationDecisionButtons';
+import { useDispatch } from 'react-redux';
+import {
+  acceptFriendInvitation,
+  rejectFriendInvitation,
+} from '../../../features/friend/friendSlice';
 
 const PendingInvitationsListItem = ({
   id,
   username,
   mail,
-  acceptFriendInvitation = () => {},
-  rejectFriendInvitation = () => {},
+  // acceptFriendInvitation = () => {},
+  // rejectFriendInvitation = () => {},
 }) => {
   const [buttonsDisabled, setButtonsDisabled] = useState(false);
-
+  const dispatch = useDispatch();
   const handleAcceptInvitation = () => {
-    acceptFriendInvitation({ id });
+    dispatch(acceptFriendInvitation({ id }));
     setButtonsDisabled(true);
   };
 
   const handleRejectInvitation = () => {
-    rejectFriendInvitation({ id });
+    dispatch(rejectFriendInvitation({ id }));
     setButtonsDisabled(true);
   };
 
