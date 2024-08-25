@@ -3,6 +3,8 @@ import { verifyTokenSocket } from './middleware/authSocket.js';
 import { newConnectionHandler } from './socketHandlers/newConnectionHandler.js';
 import { disconnectHandler } from './socketHandlers/disconnectHandler.js';
 import { getOnlineUsers, setSocketServerInstance } from './serverStore.js';
+import { directMessageHandler } from './socketHandlers/directMessageHandler.js';
+import { directChatHistoryHandler } from './socketHandlers/directChatHistoryHandler.js';
 ('socket.io');
 
 export const registerSocketServer = (server) => {
@@ -26,6 +28,12 @@ export const registerSocketServer = (server) => {
 
     newConnectionHandler(socket, io);
     emitOnlineUsers();
+    socket.on('direct-message', (data) => {
+      directMessageHandler(socket, data);
+    });
+    socket.on('direct-chat-history', (data) => {
+      directChatHistoryHandler(socket, data);
+    });
     socket.on('disconnect', () => {
       disconnectHandler(socket);
     });

@@ -14,7 +14,7 @@ const MainContainer = styled('div')({
 
 const PendingInvitationsList = () => {
   const { pendingFriendsInvitations } = useSelector((state) => state.friend);
-  console.log('friendStore', pendingFriendsInvitations);
+
   return (
     <MainContainer>
       {pendingFriendsInvitations.map((invitation) => (
