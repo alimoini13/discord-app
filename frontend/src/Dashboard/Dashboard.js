@@ -7,8 +7,9 @@ import Messenger from './Messenger/Messenger';
 import AppBar from './AppBar/AppBar';
 import { logout } from '../shared/utils/auth';
 import { connectWithSocketServer } from '../realTimeCommunication/socketConnection';
+import Room from './Room/Room';
 const Dashboard = () => {
-  // const { userDetails } = useSelector((state) => state.user);
+  const { isUserInRoom } = useSelector((state) => state.room);
   const Wrapper = styled('div')({
     width: '100%',
     height: '100vh',
@@ -32,6 +33,7 @@ const Dashboard = () => {
       <FriendsSidebar />
       <Messenger />
       <AppBar />
+      {isUserInRoom && <Room />}
     </Wrapper>
   );
 };

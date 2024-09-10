@@ -1,4 +1,6 @@
 import { addNewConnectedUser } from './../serverStore.js';
+
+import updateRooms from './updates/rooms.js';
 import {
   updateFriends,
   updateFriendsPendingInvitations,
@@ -16,4 +18,7 @@ export const newConnectionHandler = async (socket, io) => {
 
   // // update friends list
   updateFriends(userDetails.userId);
+  setTimeout(() => {
+    updateRooms(socket.id);
+  }, [500]);
 };

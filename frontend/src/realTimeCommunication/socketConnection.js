@@ -6,6 +6,7 @@ import {
 } from '../features/friend/friendSlice';
 import { store } from './../store';
 import { updateDirectChatHistoryIfActive } from './../shared/utils/chat';
+import { newRoomCreated, updateActiveRooms } from './roomHandler';
 let socket = null;
 export const connectWithSocketServer = (userDetails) => {
   const jwtToken = userDetails.userDetails.token;
@@ -43,6 +44,14 @@ export const connectWithSocketServer = (userDetails) => {
     console.log(data);
     updateDirectChatHistoryIfActive(data);
   });
+  socket.on('room-create', (data) => {
+    newRoomCreated(data);
+  });
+
+  socket.on('active-rooms', (data) => {
+    console.log('active-rooms', data);
+    updateActiveRooms(data);
+  });
 };
 
 //send to server
@@ -53,4 +62,13 @@ export const sendDirectMessage = (data) => {
 //send to server
 export const getDirectChatHistory = (data) => {
   socket.emit('direct-chat-history', data);
+};
+export const createNewRoom = () => {
+  socket.emit('room-create');
+};
+export const joinRoom = (data) => {
+  socket.emit('room-join', data);
+};
+export const leaveRoom = (data) => {
+  socket.emit('room-leave', data);
 };
