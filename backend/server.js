@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes.js';
 import friendInvitationRoutes from './routes/friendInvitationRoutes.js';
 import { registerSocketServer } from './socketServer.js';
+
 dotenv.config();
 const PORT = process.env.PORT || process.env.API_PORT;
 
@@ -18,6 +19,7 @@ mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log('Mongodb Connected...'))
   .catch((err) => console.log(err));
+
 const server = http.createServer(app);
 registerSocketServer(server);
 server.listen(PORT, () => {

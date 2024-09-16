@@ -1,27 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// import { login, register } from '../../api';
+import { createSlice } from '@reduxjs/toolkit';
 
-// export const loginUser = createAsyncThunk(
-//   'user/loginUser',
-//   async ({ mail, password }) => {
-//     const response = await login({ mail, password });
-//     console.log(response, 'response');
-//     if (response.error) {
-//       throw Error(response.exception.response.data);
-//     }
-//     return response.data;
-//   }
-// );
-// export const registerUser = createAsyncThunk(
-//   'user/registerUser',
-//   async ({ username, mail, password }) => {
-//     const response = await register({ username, mail, password });
-//     if (response.error) {
-//       throw Error(response.exception.response.data);
-//     }
-//     return response.data;
-//   }
-// );
 const initialState = {
   isUserInRoom: false,
   isUserRoomCreator: false,
@@ -49,9 +27,15 @@ const roomSlice = createSlice({
     setActiveRooms: (state, action) => {
       state.activeRooms = [...action.payload.rooms];
     },
-    setLocalStream: (state, action) => {},
+    setLocalStream: (state, action) => {
+      console.log('setLocalStream payload', action.payload);
+      state.localStream = action.payload;
+    },
     setRemoteStreams: (state, action) => {},
-    setAudioOnly: (state, action) => {},
+    setAudioOnly: (state, action) => {
+      console.log('setAudioOnly', action.payload);
+      state.audioOnly = action.payload;
+    },
     setScreenShareStream: (state, action) => {},
   },
 });

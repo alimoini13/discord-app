@@ -49,8 +49,13 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on('active-rooms', (data) => {
-    console.log('active-rooms', data);
     updateActiveRooms(data);
+  });
+  socket.on('conn-prepare', (data) => {
+    const { connUserSocketId } = data;
+    console.log('conn-prepare', data);
+    // webRTCHandler.prepareNewPeerConnection(connUserSocketId, false);
+    // socket.emit("conn-init", { connUserSocketId: connUserSocketId });
   });
 };
 
