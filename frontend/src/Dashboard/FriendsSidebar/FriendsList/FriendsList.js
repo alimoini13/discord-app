@@ -3,24 +3,6 @@ import { styled } from '@mui/system';
 import FriendsListItem from './FriendsListItem';
 import { useSelector } from 'react-redux';
 
-const DUMMY_FRIENDS = [
-  {
-    id: 1,
-    username: 'Mark',
-    isOnline: true,
-  },
-  {
-    id: 2,
-    username: 'Anna',
-    isOnline: false,
-  },
-  {
-    id: 3,
-    username: 'John',
-    isOnline: false,
-  },
-];
-
 const MainContainer = styled('div')({
   flexGrow: 1,
   width: '100%',
